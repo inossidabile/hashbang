@@ -5,7 +5,7 @@ module Hashbang
       @config      = config
 
       Headless.new.start
-      Pool.setup config.pool_size
+      Pool.setup config.pool_size, config.browser
     end
 
     def call(environment)

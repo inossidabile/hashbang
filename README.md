@@ -11,18 +11,29 @@ Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in a 
 
 Virtual browser will call your lambda with `browser` object as parameter. With help of this lambda you can setup the wait behavior. Here is a great introduction to [Watir wait API](http://watirwebdriver.com/waiting/). Note that your lambda will act as a block to `Watir::Wait.until`.
 
+## Memory consumption
+
+By default Hashbang will use Firefox. **However you should NEVER use Firefox on your production!** One instance of Firefox will consume nearly 200mb of your RAM. At the same time one instance of Chrome will consume amount close to 38mb. You are **strongly** encouraged to use 
+
+```ruby
+config.hashbang.browser = :chrome
+```
+
+option at your `production.rb` environment configuration.
+
 ## Installation & Example
 
 Start from your Gemfile:
 
 ```
-  gem 'hashbang'
+gem 'hashbang'
 ```
   
 Waiter can be defined inside your environments:
 
 ```ruby
-  config.hashbang.waiter = -> b { b.execute_script("return Joosy.Application.loading") == false }
+config.hashbang.waiter = -> b { b.execute_script("return Joosy.Application.loading") == false }
+config.hashbang.browser = :chrome
 ```
 
 This code will wait for javascript Joosy.Application.loading variable to be set to false.

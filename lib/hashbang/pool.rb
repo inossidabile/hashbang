@@ -2,11 +2,13 @@ module Hashbang
   class Pool
     cattr_accessor :inited
     cattr_accessor :pool_size
+    cattr_accessor :browser
     cattr_accessor :browsers
     cattr_accessor :taken
 
-    def self.setup(quantity=1)
+    def self.setup(quantity=1, browser)
       @@pool_size = quantity
+      @@browser   = browser
 
       self.init if !Rails || Rails.env != 'development'
     end
@@ -16,7 +18,7 @@ module Hashbang
       @@taken    = []
 
       @@pool_size.times do
-        @@browsers << browser = Watir::Browser.new
+        @@browsers << browser = Watir::Browser.new(@@browser)
         at_exit { browser.close if browser.exists? }
       end
 

@@ -4,6 +4,7 @@ module Hashbang
 
     config.hashbang.pool_size = 1
     config.hashbang.waiter    = false
+    config.hashbang.browser   = :firefox
 
     waiters = {
       :joosy => -> b { b.execute_script("return Joosy.Application.loading") == false }
