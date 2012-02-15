@@ -1,7 +1,7 @@
 # Bang. Hashbang.
 
-Hashbang will automatically enable serving HTML dumps for your AJAX web-applications according to 
-[Google conventions](http://code.google.com/web/ajaxcrawling/). Make your Rails AJAX applications indexable in no time.
+Hashbang will automatically enable serving HTML dumps from your RICH web-applications according to 
+[Google AJAX Crawling conventions](http://code.google.com/web/ajaxcrawling/). Make your Rails AJAX applications indexable in no time.
 
 Hashbang will make all incoming requests containing magic `_escaped_fragment_` parameter to be served in a special way. This case will cause a subrequest to a real AJAX URL using virtual browser. This hidden browser will wait for some condition you define using well-known [Watir](http://watirwebdriver.com/) API. And then return an HTML dump.
 
