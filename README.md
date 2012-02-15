@@ -29,4 +29,6 @@ This code will wait for javascript Joosy.Application.loading variable to be set 
 
 ## Development environment
 
-By its nature Hashbang gem requires your server to accept at least 2 concurrent connections. However WEBRick or Thin (which are mostly used as development server) will only serve one connection. That's why if you want to debug your AJAX crawling, you'll have to use `unicorn` with at least 2 workers.
+By its nature Hashbang gem requires your server to accept at least 2 concurrent connections. However WEBRick or Thin (which are mostly used as development servers) will only serve one Rails instance (and connection). That's why if you want to debug your AJAX crawling, you'll have to use `unicorn` with at least 2 workers.
+
+Note either that browser load behavior differs between development and production environments. Hashbang will use lazy load for development and therefore it may take some time for crawler to respond. While running in production environment it will start and cache browser instance at rails startup to provide the best possible response speed.
