@@ -21,6 +21,8 @@ config.hashbang.browser = :chrome
 
 option at your `production.rb` environment configuration.
 
+The reason Firefox is a default browser is easy: Chrome won't work out of the box. See the [Watir Chrome page](http://watirwebdriver.com/chrome/) for explanation and installation manual.
+
 ## Installation & Example
 
 Start from your Gemfile:
