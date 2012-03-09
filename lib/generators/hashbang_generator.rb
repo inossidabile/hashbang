@@ -5,5 +5,11 @@ class HashbangGenerator < Rails::Generators::Base
     empty_directory "hashbang"
     template "config.ru", "hashbang/config.ru"
     template "unicorn.rb", "hashbang/unicorn.rb"
+
+    empty_directory "hashbang/tmp"
+    git_keep "hashbang/tmp"
+
+    empty_directory "hashbang/public"
+    git_keep "hashbang/public"
   end
 end
