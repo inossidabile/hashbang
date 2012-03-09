@@ -7,9 +7,9 @@ class HashbangGenerator < Rails::Generators::Base
     template "unicorn.rb", "hashbang/unicorn.rb"
 
     empty_directory "hashbang/tmp"
-    git_keep "hashbang/tmp"
+    create_file "hashbang/tmp/.gitkeep"
 
     empty_directory "hashbang/public"
-    git_keep "hashbang/public"
+    create_file "hashbang/public/.gitkeep"
   end
 end
