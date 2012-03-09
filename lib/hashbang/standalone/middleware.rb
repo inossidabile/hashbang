@@ -4,9 +4,7 @@ module Hashbang
     class Middleware
       def initialize(root)
         Config.load File.expand_path('config.rb', root)
-
         Headless.new.start
-        Crawler::setup
       end
 
       def call(environment)
@@ -18,7 +16,7 @@ module Hashbang
 
         url  = url.split('=')[1]
         url  = Crawler.urlFromUrl(url)
-        html = Crawler.gimme url, Config.waiter
+        html = Crawler.gimme url
 
         if html.respond_to? :force_encoding
           html.force_encoding "UTF-8"

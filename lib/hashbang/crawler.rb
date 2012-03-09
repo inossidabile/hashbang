@@ -2,29 +2,8 @@ module Hashbang
   module Crawler
     extend self
 
-    @@browser = false
-
-    def setup
-      @@browser = Watir::Browser.new(:chrome)
-      at_exit { @@browser.close if @@browser.exists? }
-    end
-
-    def gimme(url, proc=false, &block)
-      self.setup if !@@browser
-
-      begin
-        @@browser.goto url
-
-        if proc
-          Watir::Wait.until { proc.call @@browser }
-        elsif block_given?
-          Watir::Wait.until { block.call @@browser }
-        end
-
-        @@browser.html
-      rescue
-        ''
-      end
+    def gimme(url)
+      Sunscraper.scrape_url url, 100000
     end
 
     def urlFromRack(environment)
