@@ -3,7 +3,7 @@ PATH
   specs:
     hashbang (0.0.1.alpha)
       headless
-      sunscraper (~> 1.1.0.beta2)
+      sunscraper (~> 1.1.0.beta3)
       unicorn
 
 GEM
@@ -14,7 +14,7 @@ GEM
     kgio (2.7.2)
     rack (1.4.1)
     raindrops (0.8.0)
-    sunscraper (1.1.0.beta2)
+    sunscraper (1.1.0.beta3)
       ffi (>= 1.0.11)
     unicorn (4.2.0)
       kgio (~> 2.6)

@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'headless'
-  s.add_dependency 'sunscraper', '~> 1.1.0.beta2'
+  s.add_dependency 'sunscraper', '~> 1.1.0.beta3'
   s.add_dependency 'unicorn'
 end
