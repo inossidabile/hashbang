@@ -5,13 +5,13 @@ Hashbang is a tiny Rack proxy serving HTML dumps for your RICH web-applications 
 
 Using Rails generators Hashbang will setup small inner Rack application which will handle all magic requests containing `_escaped_fragment_` parameter. These requests will cause a subrequest to a real AJAX URL using virtual browser. 
 
-Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_hidden_page`. Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in a virtual browser. Virtual browser will load this page and wait for `Suncscraper.finish` call. As soon as it was called Hashbang will respond with HTML dump.
+Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_hidden_page`. Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in a virtual browser. Virtual browser will load this page and wait for `Suncscraper.finish` javascript call. As soon as it was called Hashbang will respond with HTML dump.
 
 Hashbang uses [Sunscraper](http://github.com/roundlake/sunscraper) and therefore you will need Qt to use it.
 
 ## Environments are specific
 
-While working at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. That's it, just proceed to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
+While working at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. Go to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
 
 However due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all magic requests to standalone instance.
 
@@ -60,6 +60,13 @@ Limits hashbang crawling to described set of URLs. Limit only works in standalon
 
 Timeout in miliseconds hashbang will give virtual browser to grab data. Keep it as low as possible. Timeout only works in standalone mode.
 
+## Crawling marker
+
+To help Sunscraper (virtual browser of Hashbang) understand what should be considererd a loaded page, add Javascript `Suncscraper.finish()` call when all AJAX is done and your DOM is ready. Note that for straight client calls `Sunscraper` variable will be empty and therefore you should check if it's available. This is how it should basically look:
+
+```javascript
+if (typeof Sunscraper !== "undefined") { Sunscraper.finish() }
+```
 
 ## Memory consumption
 
