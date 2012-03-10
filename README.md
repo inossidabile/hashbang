@@ -27,7 +27,9 @@ You can either simulate production mode runing `rake hashbang:standalone`.
 
 ## Installation
 
-Start from your Gemfile:
+Ensure you have the Qt dependencies for Sunscraper. To install it on Mac with brew run `brew install qt`. To install it on Debian run `apt-get install qt4-dev-tools --no-install-recommends`.
+
+Add gem to your Gemfile:
 
 ```
 gem 'hashbang'
