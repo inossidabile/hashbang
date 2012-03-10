@@ -16,8 +16,6 @@ module Hashbang
           url = Crawler.urlFromUrl url
         end
 
-        raise url.inspect
-
         if url.to_s.length == 0 || !url.match(Config.url)
           return [200, {"Content-Type" => "text/html; charset=utf-8"}, ['']]
         end
