@@ -11,7 +11,7 @@ Hashbang uses [Sunscraper](http://github.com/roundlake/sunscraper) and therefore
 
 ## Environments are specific
 
-If you are not using Rails you should skip this paragraph. While working with at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. Go to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
+While working with at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. Go to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
 
 Due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all the magic requests to the standalone instance.
 
