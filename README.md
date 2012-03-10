@@ -45,7 +45,7 @@ This generator will create an inline Rack application at `hashbang/` dir. You ca
 
 ```ruby
 Hashbang::Config.map do |c|
-  c.url     = /^$/
+  c.url     = /^.*$/
   c.timeout = 5000
 end
 ```
@@ -68,4 +68,4 @@ if (typeof Sunscraper !== "undefined") { Sunscraper.finish() }
 
 ## Memory consumption
 
-Hashbang will keep one instance of Sunscraper per each instance. Sunscraper  bundles clear QTWebKit and therefore keeps memory consumption as low as possible for virtual browsers. However it can still be noticeable and therefore you should only increase possible concurency if your resource gets indexed often.
+Hashbang will keep one instance of Sunscraper per each Hashbang instance. Sunscraper  bundles clear QTWebKit and therefore keeps memory consumption as low as possible for virtual browsers. However it can still be noticeable and therefore you should only increase possible concurency if your resource gets indexed often.
