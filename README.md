@@ -15,9 +15,7 @@ While working at development environment, this gem will catch all the requests c
 
 However due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all magic requests to standalone instance.
 
-Imagine you are runing Hasbang rack instance at `33222` port. With that you should proxy all requests containing `_escaped_fragment_=` to `localhost:33222/?url=…` where `…` is full request URI. 
-
-**Don't forget to escape url parameter so resulting request could like this:** `localhost:33222/?url=http%3A%2F%2Fwww.dvnts.ru%2F%3F_encoded_fragment_%3D`.
+Imagine you are runing Hasbang rack instance at `33222` port. With that you should proxy all requests containing `_escaped_fragment_=` to `localhost:33222/?url=…` where `…` is full request URI. **Don't forget to escape url parameter so resulting request could like this:** `localhost:33222/?url=http%3A%2F%2Fwww.dvnts.ru%2F%3F_encoded_fragment_%3D`.
 
 You are supposed to limit concurent connections and restrict direct connection to Hashbang instances. We'll describe typical production nginx/passenger setup later in this README.
 
