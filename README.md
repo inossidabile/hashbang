@@ -3,9 +3,9 @@
 Hashbang is a tiny Rack proxy serving HTML dumps for your RICH web-applications according to 
 [Google AJAX Crawling conventions](http://code.google.com/web/ajaxcrawling/). Make your Rails AJAX applications indexable in no time.
 
-Using Rails generators Hashbang will setup a small inner Rack application which will handle all magic requests containing `_escaped_fragment_` parameter. These requests will cause a subrequest to a real AJAX URL using virtual browser. 
+Using Rails generators Hashbang will setup a small inner Rack application which will handle all magic requests containing `_escaped_fragment_` parameter. These requests will cause a subrequest to a real AJAX URL using a virtual browser. 
 
-Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_hidden_page`. Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in the virtual browser. Virtual browser will load this page and wait for `Suncscraper.finish` javascript call. As soon as it was called Hashbang will respond with an HTML dump.
+Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_hidden_page`. Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in the virtual browser. The virtual browser will load this page and wait for `Suncscraper.finish` javascript call. As soon as it was called Hashbang will respond with an HTML dump.
 
 Hashbang uses [Sunscraper](http://github.com/roundlake/sunscraper) and therefore you will need Qt to use it.
 
@@ -13,11 +13,11 @@ Hashbang uses [Sunscraper](http://github.com/roundlake/sunscraper) and therefore
 
 While working at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. Go to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
 
-However due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all the magic requests to standalone instance.
+However due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all the magic requests to the standalone instance.
 
-Imagine you are runing Hasbang rack instance at `33222` port. With that you should proxy all the requests containing `_escaped_fragment_=` to `localhost:33222/?url=…` where `…` is full request URI. **Don't forget to escape url parameter so resulting request could like this:** `localhost:33222/?url=http%3A%2F%2Fwww.dvnts.ru%2F%3F_encoded_fragment_%3D`.
+Imagine you are runing Hashbang rack instance at `33222` port. With that you should proxy all the requests containing `_escaped_fragment_=` to `localhost:33222/?url=…` where `…` is a full request URI. **Don't forget to escape url parameter so resulting request could be like this:** `localhost:33222/?url=http%3A%2F%2Fwww.dvnts.ru%2F%3F_encoded_fragment_%3D`.
 
-You are supposed to limit concurent connections and restrict direct connection to Hashbang instances. We'll describe typical production nginx/passenger setup later in this README.
+You are supposed to limit the concurent connections and restrict the direct connection to Hashbang instances. We'll describe typical production nginx/passenger setup later in this README.
 
 **P.S.**
 
@@ -27,7 +27,11 @@ You can either simulate production mode runing `rake hashbang:standalone`.
 
 ## Installation
 
-Ensure you have the Qt dependencies for Sunscraper. To install it on Mac with brew run `brew install qt`. To install it on Debian run `apt-get install qt4-dev-tools --no-install-recommends`.
+Ensure you have the Qt dependencies for Sunscraper (read [Sunscraper description](http://github.com/roundlake/sunscraper/) for more info).
+
+To install it on Mac with [Homerew](http://mxcl.github.com/homebrew/) run `brew install qt`. 
+
+To install it on Debian run `apt-get install qt4-dev-tools --no-install-recommends`.
 
 Add gem to your Gemfile:
 
