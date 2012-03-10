@@ -11,9 +11,9 @@ Hashbang uses [Sunscraper](http://github.com/roundlake/sunscraper) and therefore
 
 ## Environments are specific
 
-While working at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. Go to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
+If you are not using Rails you should skip this paragraph. While working with at development environment, this gem will catch all the requests containing `_escaped_fragment_` directly from Rails using middleware and therefore it will just work **(see P.S. below)**. Go to `http://localhost:3000?_escaped_fragment_=test` to make Hashbang load and dump `http://localhost:3000/#!/test` for you.
 
-However due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all the magic requests to the standalone instance.
+Due to security and performance reasons, at the production servers you are supposed to boot this Rack app separately and manually forward all the magic requests to the standalone instance.
 
 Imagine you are runing Hashbang rack instance at `33222` port. With that you should proxy all the requests containing `_escaped_fragment_=` to `localhost:33222/?url=…` where `…` is a full request URI. **Don't forget to escape url parameter so resulting request could be like this:** `localhost:33222/?url=http%3A%2F%2Fwww.dvnts.ru%2F%3F_encoded_fragment_%3D`.
 
@@ -21,15 +21,15 @@ You are supposed to limit the concurent connections and restrict the direct conn
 
 **P.S.**
 
-Since in most cases basic development setup uses just one Rails instance all the requests to magic urls will lead to Deadlock! To solve this problem we've included the `rake hashbang:rails` command which will run your Rails project inside a [Unicorn](http://unicorn.bogomips.org/) with 2 instances.
+Since in most cases basic development setup uses just one Rails instance, all the requests to magic urls will lead to Deadlock! To solve this problem we've included the `rake hashbang:rails` command which will run your Rails project inside a [Unicorn](http://unicorn.bogomips.org/) with 2 instances.
 
-You can either simulate production mode runing `rake hashbang:standalone`.
+You can also simulate production mode runing `rake hashbang:standalone`.
 
 ## Installation
 
 Ensure you have the Qt dependencies for Sunscraper (read [Sunscraper description](http://github.com/roundlake/sunscraper/) for more info).
 
-To install it on Mac with [Homerew](http://mxcl.github.com/homebrew/) run `brew install qt`. 
+To install it on Mac with [Homebrew](http://mxcl.github.com/homebrew/) run `brew install qt`. 
 
 To install it on Debian run `apt-get install qt4-dev-tools --no-install-recommends`.
 
@@ -58,15 +58,15 @@ end
 
 #### Url
 
-Limits hashbang crawling to described set of URLs. Limit only works in standalone mode.
+Url limits hashbang crawling to described set of URLs. The limit only works in standalone mode.
 
 #### Timeout
 
-Timeout in miliseconds hashbang will give virtual browser to grab data. Keep it as low as possible. Timeout only works in standalone mode.
+Hashbang will give virtual browser specified timeout in miliseconds to grab data. Keep it as low as possible. The timeout only works in standalone mode.
 
 ## Crawling marker
 
-To help Sunscraper (virtual browser of Hashbang) understand what should be considererd a loaded page, add Javascript `Suncscraper.finish()` call when all AJAX is done and your DOM is ready. Note that for straight client calls `Sunscraper` variable will be empty and therefore you should check if it's available. This is how it should basically look:
+To help Sunscraper (virtual browser of Hashbang) understand what should be considered a loaded page, add Javascript `Suncscraper.finish()` call when all AJAX is done and your DOM is ready. Note that for the straight client calls `Sunscraper` variable will be empty and therefore you should check if it's available. This is how it should basically look:
 
 ```javascript
 if (typeof Sunscraper !== "undefined") { Sunscraper.finish() }
