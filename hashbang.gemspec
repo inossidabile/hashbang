@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "hashbang"
-  s.version     = "1.0.0.beta2"
+  s.version     = "1.0.0"
   s.platform    = Gem::Platform::RUBY
   s.summary     = "Magic support of Google/Bing/... AJAX search indexing for your Rails apps"
   s.email       = "boris@roundlake.ru"
