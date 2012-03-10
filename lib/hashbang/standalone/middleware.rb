@@ -10,13 +10,19 @@ module Hashbang
       def call(environment)
         url = environment['QUERY_STRING'].split('&').find{|x| x[0,4] == 'url='}
 
-        if url.to_s.length == 0
+        unless url.to_s.length == 0
+          url = url.split('=')[1]
+          url = URI.unescape url
+          url = Crawler.urlFromUrl url
+        end
+
+        raise url.inspect
+
+        if url.to_s.length == 0 || !url.match(Config.url)
           return [200, {"Content-Type" => "text/html; charset=utf-8"}, ['']]
         end
 
-        url  = url.split('=')[1]
-        url  = Crawler.urlFromUrl(url)
-        html = Crawler.gimme url
+        html = Crawler.gimme url, Config.timeout
 
         if html.respond_to? :force_encoding
           html.force_encoding "UTF-8"

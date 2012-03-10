@@ -4,6 +4,7 @@ class HashbangGenerator < Rails::Generators::Base
   def create_files
     empty_directory "hashbang"
     template "config.ru", "hashbang/config.ru"
+    template "config.rb", "hashbang/config.rb"
     template "unicorn.rb", "hashbang/unicorn.rb"
 
     empty_directory "hashbang/tmp"

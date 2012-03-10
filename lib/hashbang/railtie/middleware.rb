@@ -9,7 +9,7 @@ module Hashbang
       def call(environment)
         if environment['QUERY_STRING'].include? "_escaped_fragment_"
           url  = Crawler.urlFromRack(environment)
-          html = Crawler.gimme url
+          html = Crawler.gimme url, 100000
 
           [200, {"Content-Type" => "text/html; charset=utf-8"}, [html]]
         else

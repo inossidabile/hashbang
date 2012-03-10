@@ -2,8 +2,8 @@ module Hashbang
   module Crawler
     extend self
 
-    def gimme(url)
-      Sunscraper.scrape_url url, 100000
+    def gimme(url, timeout)
+      Sunscraper.scrape_url url, timeout
     end
 
     def urlFromRack(environment)
