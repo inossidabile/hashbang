@@ -72,6 +72,31 @@ To help Sunscraper (virtual browser of Hashbang) understand what should be consi
 if (typeof Sunscraper !== "undefined") { Sunscraper.finish() }
 ```
 
+## Typical production configurations
+
+### Nginx + Passenger
+
+This configuration includes usage of `limit_conn_module` of nginx which is not compiled by default. Please setup it according to [official manual](http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html). You can omit `limit_conn` directive but you never should do it since hasbang will always dramaticaly increase your server load. And 5 concurent connections is quite always enough to serve search engine bots.
+
+```
+upstream hashbang-dvnts {
+  server localhost:22333;
+}
+
+server {
+  listen 22333;
+  server_name localhost;
+
+  location / {
+    limit_conn perserver 5;
+    root /path/to/project/current/hashbang/public;
+    passenger_enabled on;
+    access_log /path/to/project/current/log/hashbang.access.log;
+    error_log /path/to/project/current/log/hashbang.error.log;
+  }
+}
+```
+
 ## Memory consumption
 
 Hashbang will keep one instance of Sunscraper per each Hashbang instance. Sunscraper  bundles clear QTWebKit and therefore keeps memory consumption as low as possible for virtual browsers. However it can still be noticeable and therefore you should only increase possible concurency if your resource gets indexed often.
