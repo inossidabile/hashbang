@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "hashbang"
-  s.version     = "1.0.0"
+  s.version     = "1.0.1"
   s.platform    = Gem::Platform::RUBY
   s.summary     = "Magic support of Google/Bing/... AJAX search indexing for your Rails apps"
   s.email       = "boris@roundlake.ru"
@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'headless'
-  s.add_dependency 'sunscraper', '~> 1.1.0.beta3'
+  s.add_dependency 'sunscraper', '~> 1.2.0.pre1'
   s.add_dependency 'unicorn'
 end

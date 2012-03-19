@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    hashbang (0.0.1.alpha)
+    hashbang (1.0.0)
       headless
-      sunscraper (~> 1.1.0.beta3)
+      sunscraper (~> 1.2.0.pre1)
       unicorn
 
 GEM
@@ -11,10 +11,10 @@ GEM
   specs:
     ffi (1.0.11)
     headless (0.2.2)
-    kgio (2.7.2)
+    kgio (2.7.3)
     rack (1.4.1)
     raindrops (0.8.0)
-    sunscraper (1.1.0.beta3)
+    sunscraper (1.2.0.pre1)
       ffi (>= 1.0.11)
     unicorn (4.2.0)
       kgio (~> 2.6)
