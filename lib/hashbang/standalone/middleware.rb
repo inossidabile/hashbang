@@ -1,3 +1,5 @@
+require 'uri'
+
 # coding: utf-8
 module Hashbang
   module Standalone
@@ -11,12 +13,17 @@ module Hashbang
         url = environment['QUERY_STRING'].split('&').find{|x| x[0,4] == 'url='}
 
         unless url.to_s.length == 0
-          url = url.split('=')[1]
+          url = url.split('=')
+          url.shift
+
+          url = url.join('=')
           url = URI.unescape url
           url = Crawler.urlFromUrl url
         end
 
-        if url.to_s.length == 0 || !url.match(Config.url)
+        host = URI.parse(url).host
+
+        if url.to_s.length == 0 || !host.match(Config.url)
           return [200, {"Content-Type" => "text/html; charset=utf-8"}, ['']]
         end
 
