@@ -100,3 +100,15 @@ server {
 ## Memory consumption
 
 Hashbang will keep one instance of Sunscraper per each Hashbang instance. Sunscraper  bundles clear QTWebKit and therefore keeps memory consumption as low as possible for virtual browsers. However it can still be noticeable and therefore you should only increase possible concurency if your resource gets indexed often.
+
+Credits
+-------
+
+<img src="http://roundlake.ru/assets/logo.png" align="right" />
+
+* Boris Staal ([@_inossidabile](http://twitter.com/#!/_inossidabile))
+
+LICENSE
+-------
+
+It is free software, and may be redistributed under the terms of MIT license.
