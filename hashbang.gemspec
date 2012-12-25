@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.summary     = "Magic support of Google/Bing/... AJAX search indexing for your Rails apps"
   s.email       = "boris@roundlake.ru"
-  s.homepage    = "http://roundlake.github.com/hashbang/"
+  s.homepage    = "https://github.com/inossidabile/hashbang/"
   s.description = "Hashbang is a tiny Rack proxy serving HTML dumps for your RICH web-applications according to Google AJAX Crawling conventions. Make your Rails AJAX applications indexable in no time."
   s.authors     = ['Boris Staal']
 
