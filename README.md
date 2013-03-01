@@ -3,6 +3,8 @@
 Hashbang is a tiny Rack proxy serving HTML dumps for your RICH web-applications according to 
 [Google AJAX Crawling conventions](http://code.google.com/web/ajaxcrawling/). Make your Rails AJAX applications indexable in no time.
 
+[![endorse](http://api.coderwall.com/inossidabile/endorsecount.png)](http://coderwall.com/inossidabile)
+
 Using Rails generators Hashbang will setup a small inner Rack application which will handle all magic requests containing `_escaped_fragment_` parameter. These requests will cause a subrequest to a real AJAX URL using a virtual browser. 
 
 Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_hidden_page`. Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in the virtual browser. The virtual browser will load this page and wait for `Suncscraper.finish` javascript call. As soon as it was called Hashbang will respond with an HTML dump.
