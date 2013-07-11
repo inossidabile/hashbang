@@ -3,13 +3,13 @@
 Hashbang is a tiny Rack proxy serving HTML dumps for your RICH web-applications according to 
 [Google AJAX Crawling conventions](http://code.google.com/web/ajaxcrawling/). Make your Rails AJAX applications indexable in no time.
 
-[![endorse](http://api.coderwall.com/inossidabile/endorsecount.png)](http://coderwall.com/inossidabile)
-
 Using Rails generators Hashbang will setup a small inner Rack application which will handle all magic requests containing `_escaped_fragment_` parameter. These requests will cause a subrequest to a real AJAX URL using a virtual browser. 
 
 Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_hidden_page`. Hashbang will convert this URL to `test.com/#!/my_hidden_page` and open it in the virtual browser. The virtual browser will load this page and wait for `Suncscraper.finish` javascript call. As soon as it was called Hashbang will respond with an HTML dump.
 
-Hashbang uses [Sunscraper](http://github.com/roundlake/sunscraper) and therefore you will need Qt to use it.
+Hashbang uses [Sunscraper](http://github.com/inossidabile/sunscraper) and therefore you will need Qt to use it.
+
+[![endorse](http://api.coderwall.com/inossidabile/endorsecount.png)](http://coderwall.com/inossidabile)
 
 ## Environments are specific
 
@@ -103,14 +103,10 @@ server {
 
 Hashbang will keep one instance of Sunscraper per each Hashbang instance. Sunscraper  bundles clear QTWebKit and therefore keeps memory consumption as low as possible for virtual browsers. However it can still be noticeable and therefore you should only increase possible concurency if your resource gets indexed often.
 
-Credits
--------
+## Maintainers
 
-<img src="http://roundlake.ru/assets/logo.png" align="right" />
+* Boris Staal, [@inossidabile](http://staal.io)
 
-* Boris Staal ([@_inossidabile](http://twitter.com/#!/_inossidabile))
-
-LICENSE
--------
+## License
 
 It is free software, and may be redistributed under the terms of MIT license.
