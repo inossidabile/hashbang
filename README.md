@@ -9,6 +9,7 @@ Let's say for example you've got a request to `test.com/?_escaped_fragment_=/my_
 
 Hashbang uses [Sunscraper](http://github.com/inossidabile/sunscraper) and therefore you will need Qt to use it.
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/inossidabile/hashbang/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![endorse](http://api.coderwall.com/inossidabile/endorsecount.png)](http://coderwall.com/inossidabile)
 
 ## Environments are specific
